@@ -246,9 +246,9 @@ proxy-providers:
 
   # 此处只是订阅示例，如果没有订阅链接的使用需求，此处及 proxy-groups 的相关内容可删除
 
-  DuckDuckGoList: #「冲鸭机场」订阅
+  Inss: #「机场」订阅
     type: http
-    url: "https://insss.xyz/api/v1/client/subscribe?token=42dd72e217f82fb460f21c9cf1324020" # 放机场订阅链接
+    url: "https://raw.githubusercontent.com/christ-lea/Profiles/master/Clash/ProxyList/inss.yaml" # 放机场订阅链接
     interval: 3600
     path: ./Proxy/List.yaml # 注意此处文件名不可相同
     health-check:
@@ -256,15 +256,7 @@ proxy-providers:
       interval: 600
       url: http://www.gstatic.com/generate_204
 
-  # DuckDuckGoUS: #「冲鸭机场」订阅美国地区节点
-  #   type: http
-  #   url: "https://raw.githubusercontent.com/DivineEngine/Profiles/master/Clash/ProxyList/US.yaml" # 放机场订阅链接
-  #   interval: 3600
-  #   path: ./Proxy/US.yaml # 注意此处文件名不可相同
-  #   health-check:
-  #     enable: true
-  #     interval: 600
-  #     url: http://www.gstatic.com/generate_204
+
 
 proxy-groups:
 # 策略组示例请查阅 Clash 项目 README 以使用最新格式：https://github.com/Dreamacro/clash/wiki/configuration
@@ -306,15 +298,10 @@ proxy-groups:
       - DuckDuckGo # 嵌套使用订阅节点策略组
 
   # 手动选择订阅节点
-  - name: "DuckDuckGo"
+  - name: "Inss"
     type: select # 亦可使用 fallback 或 load-balance
     use: # 注意此处是「use」
-      - DuckDuckGoList # 这是上面「proxy-providers」的名称
-
-  # - name: "US"
-  #   type: select # 亦可使用 fallback 或 load-balance
-  #   use: # 注意此处是「use」
-  #     - DuckDuckGoUS # 这是上面「proxy-providers」的名称
+      - Inss # 这是上面「proxy-providers」的名称
 
   # Fallback 比较实用的策略组类型，用于测试服务器节点的可用性，当第一个节点不可用时切换到第二个，以此类推。
   - name: "Fallback"
