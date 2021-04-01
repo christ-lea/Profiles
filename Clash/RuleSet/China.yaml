@@ -103,19 +103,19 @@ payload:
   - DOMAIN-SUFFIX,xiaomi.com
   - DOMAIN-SUFFIX,xiaomi.net
   # > Microsoft
-  # - DOMAIN-SUFFIX,microsoft.com
-  # - DOMAIN-SUFFIX,msecnd.net
-  # - DOMAIN-SUFFIX,office.com
-  # - DOMAIN-SUFFIX,office365.com
-  # - DOMAIN-SUFFIX,s-microsoft.com
-  # - DOMAIN-SUFFIX,windows.com
+  - DOMAIN-SUFFIX,microsoft.com
+  - DOMAIN-SUFFIX,msecnd.net
+  - DOMAIN-SUFFIX,office.com
+  - DOMAIN-SUFFIX,office365.com
+  - DOMAIN-SUFFIX,s-microsoft.com
+  - DOMAIN-SUFFIX,windows.com
   - DOMAIN-SUFFIX,visualstudio.com
   # >> Microsoft Software Download
-  # - DOMAIN,software-download.microsoft.com
-  # - DOMAIN-KEYWORD,-microsoft-com.akamaized.net
+  - DOMAIN,software-download.microsoft.com
+  - DOMAIN-KEYWORD,-microsoft-com.akamaized.net
   # >> OneDrive
-  # - DOMAIN-SUFFIX,1drv.com
-  # - DOMAIN-SUFFIX,storage.live.com
+  - DOMAIN-SUFFIX,1drv.com
+  - DOMAIN-SUFFIX,storage.live.com
   # >> Outlook
   - DOMAIN-SUFFIX,hotmail.com
   - DOMAIN-SUFFIX,outlook.com
