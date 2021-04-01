@@ -246,7 +246,7 @@ proxy-providers:
 
   # 此处只是订阅示例，如果没有订阅链接的使用需求，此处及 proxy-groups 的相关内容可删除
 
-  Inss: #「机场」订阅
+  Insslist: #「冲鸭机场」订阅
     type: http
     url: "https://raw.githubusercontent.com/christ-lea/Profiles/master/Clash/ProxyList/inss.yaml" # 放机场订阅链接
     interval: 3600
@@ -255,7 +255,6 @@ proxy-providers:
       enable: true
       interval: 600
       url: http://www.gstatic.com/generate_204
-
 
 
 proxy-groups:
@@ -301,7 +300,7 @@ proxy-groups:
   - name: "Inss"
     type: select # 亦可使用 fallback 或 load-balance
     use: # 注意此处是「use」
-      - Inss # 这是上面「proxy-providers」的名称
+      - Insslist # 这是上面「proxy-providers」的名称
 
   # Fallback 比较实用的策略组类型，用于测试服务器节点的可用性，当第一个节点不可用时切换到第二个，以此类推。
   - name: "Fallback"
@@ -330,7 +329,7 @@ proxy-groups:
       - Seoul01
       - Seoul02
       - Heroku01
-      # - US
+     
 
   # 中国流媒体服务（面向海外版本）
   # 用于观看部分国内流媒体面向港澳台的地区的限定内容，此处应放港澳台节点，如果没有此需求可删除此处策略组及相关规则
