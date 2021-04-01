@@ -277,7 +277,7 @@ proxy-groups:
   # - name: "PROXY"
   #   type: select
   #   use:
-  #     - DuckDuckGo # 嵌套使用订阅节点策略组
+  #     - Inss
   #   proxies:
   #     - Fallback
   #     - 1
@@ -295,7 +295,7 @@ proxy-groups:
       - Seoul01
       - Seoul02
       - Heroku01
-      - DuckDuckGo # 嵌套使用订阅节点策略组
+      - Inss
 
   # 手动选择订阅节点
   - name: "Inss"
