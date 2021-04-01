@@ -193,17 +193,37 @@ proxies:
     #   Host: v2ray.com
 
   # Trojan
-  - name: "3"
+  - name: "Seoul01"
     type: trojan
-    server: server
+    server: trojan.sqlee.top
     port: 443
-    password: yourpsk
+    password: ffc46290
     # udp: true
     # sni: example.com # aka server name
     # alpn:
     #   - h2
     #   - http/1.1
     # skip-cert-verify: true
+
+  # Trojan
+  - name: "Seoul02"
+    type: trojan
+    server: fuck.sqlee.top
+    port: 443
+    password: 36f2da99
+    # udp: true
+    # sni: example.com # aka server name
+    # alpn:
+    #   - h2
+    #   - http/1.1
+    # skip-cert-verify: true
+
+  - {name: Heroku01, server: 104.19.1.138, port: 443, type: vmess, uuid: ad806487-2d26-4636-98b6-ab85cc8521f7, alterId: 0, cipher: auto, tls: true, skip-cert-verify:         false, network: ws, ws-path: /, ws-headers: {Host: odd-math-bcbd.siqi.workers.dev}}
+
+
+  - {name: 🎵 网易云音乐, server: music.desperadoj.com, port: 30001, type: ss, cipher: aes-128-gcm, password: desperadoj.com_free_proxy_emx2}
+  - {name: 🌈 网易云音乐, server: 106.52.127.72, port: 19951, type: http}
+  
 
 # 服务器节点订阅
 proxy-providers:
@@ -228,7 +248,7 @@ proxy-providers:
 
   DuckDuckGoList: #「冲鸭机场」订阅
     type: http
-    url: "https://raw.githubusercontent.com/DivineEngine/Profiles/master/Clash/ProxyList/List.yaml" # 放机场订阅链接
+    url: "https://insss.xyz/api/v1/client/subscribe?token=42dd72e217f82fb460f21c9cf1324020" # 放机场订阅链接
     interval: 3600
     path: ./Proxy/List.yaml # 注意此处文件名不可相同
     health-check:
@@ -270,9 +290,20 @@ proxy-groups:
   #     - Fallback
   #     - 1
   #     - 2
-  #     - 3
+  #     - Seoul01
+
   #
   # 但如果订阅节点很多选起来就很麻烦，不如先嵌套一个策略组进行手动或自动的选择。
+
+ # 代理节点选择
+  - name: "PROXY"
+    type: select
+    proxies:
+      - Fallback
+      - Seoul01
+      - Seoul02
+      - Heroku01
+      - DuckDuckGo # 嵌套使用订阅节点策略组
 
   # 手动选择订阅节点
   - name: "DuckDuckGo"
@@ -289,21 +320,13 @@ proxy-groups:
   - name: "Fallback"
     type: fallback
     proxies:
-      - 1
-      - 2
-      - 3
+      - Seoul01
+      - Seoul02
+      - Heroku01
     url: 'http://www.gstatic.com/generate_204'
     interval: 300
 
-  # 代理节点选择
-  - name: "PROXY"
-    type: select
-    proxies:
-      - Fallback
-      - 1
-      - 2
-      - 3
-      - DuckDuckGo # 嵌套使用订阅节点策略组
+ 
 
   # 白名单模式 PROXY, 黑名单模式 DIRECT, 不知道别动
   - name: "MATCH"
@@ -317,9 +340,9 @@ proxy-groups:
     type: select
     proxies:
       - PROXY
-      - 1
-      - 2
-      - 3
+      - Seoul01
+      - Seoul02
+      - Heroku01
       # - US
 
   # 中国流媒体服务（面向海外版本）
@@ -328,7 +351,14 @@ proxy-groups:
     type: select
     proxies:
       - DIRECT
-      - 2
+     
+  # 网易云
+  - name: NeteaseMusic
+    type: select
+    proxies:
+      - DIRECT
+      - 🎵 网易云音乐
+      - 🌈 网易云音乐
 
 # 关于 Rule Provider 请查阅：https://lancellc.gitbook.io/clash/clash-config-file/rule-provider
 
@@ -372,7 +402,7 @@ rule-providers:
     type: http
     behavior: classical
     path: ./RuleSet/China.yaml
-    url: https://raw.githubusercontent.com/DivineEngine/Profiles/master/Clash/RuleSet/China.yaml
+    url: https://raw.githubusercontent.com/christ-lea/Profiles/master/Clash/RuleSet/China.yaml
     interval: 86400
 
   ChinaIP:
@@ -382,8 +412,18 @@ rule-providers:
     url: https://raw.githubusercontent.com/DivineEngine/Profiles/master/Clash/RuleSet/Extra/ChinaIP.yaml
     interval: 86400
 
+  NeteaseMusic:
+    type: http
+    behavior: classical
+    path: ./RuleSet/NeteaseMusic.yaml
+    url: https://cdn.jsdelivr.net/gh/DesperadoJ/Rules-for-UnblockNeteaseMusic/Clash/RuleSet/NeteaseMusic.yaml
+    interval: 86400
+
 # 规则
 rules:
+  # Netease Music
+  - RULE-SET,NeteaseMusic,🎵 网易云音乐
+
   # Unbreak
   - RULE-SET,Unbreak,DIRECT
 
@@ -400,6 +440,14 @@ rules:
 
   # China Area Network
   - RULE-SET,China,DIRECT
+
+  # Netease Music Advertising
+  - DOMAIN,admusicpic.music.126.net,REJECT
+  - DOMAIN,iadmat.nosdn.127.net,REJECT
+  - DOMAIN,iadmusicmat.music.126.net,REJECT
+  - DOMAIN,iadmusicmatvideo.music.126.net,REJECT
+
+
 
   # Local Area Network
   - IP-CIDR,192.168.0.0/16,DIRECT
