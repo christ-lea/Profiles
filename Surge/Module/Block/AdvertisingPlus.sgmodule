@@ -2,9 +2,7 @@
 #!desc=Block Advertising with Script for Surge iOS
 #!system=ios
 
-[URL Rewrite]
 
-[Map Local]
 [Script]
 
 # ---(By srk24)---
