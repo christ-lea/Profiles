@@ -11,7 +11,7 @@ payload:
   - DOMAIN-KEYWORD,google
   - DOMAIN-KEYWORD,.blogspot.
   # > v2ex
-  - DOMAIN-KEYWORDS,v2ex
+  - DOMAIN-KEYWORD,v2ex
   # > Tangrenjie
   - DOMAIN-SUFFIX,tangrenjie.tv
   # > Pornhub
