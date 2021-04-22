@@ -10,6 +10,8 @@ payload:
   - DOMAIN-SUFFIX,ytimg.com
   - DOMAIN-KEYWORD,google
   - DOMAIN-KEYWORD,.blogspot.
+  # > Youtube
+  - DOMAIN-SUFFIX,youtube.com
   # > v2ex
   - DOMAIN-KEYWORD,v2ex
   # > Tangrenjie
