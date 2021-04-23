@@ -1,9 +1,13 @@
 #!name=Block Ads
 #!desc=Block Advertising with Script for Surge iOS
 #!system=ios
+[Rule]
+DOMAIN-SUFFIX,cm.bilibili.com,REJECT
+URL-REGEX,^https?:\/\/api\.bilibili\.com\/x\/v2\/dm\/ad,REJECT
+# 可能的一些推广(beta)
+URL-REGEX,^https?:\/\/api\.bilibili\.com\/pgc\/season\/app\/related\/recommend\?,REJECT
 
 [URL Rewrite]
-
 # > Zhihu - www.zhihu.com,api.zhihu.com
 ^https?:\/\/api\.zhihu\.com\/commercial_api\/ - reject
 ^https?:\/\/api\.zhihu\.com\/fringe\/ad - reject
@@ -13,10 +17,9 @@
 ^https?:\/\/www\.zhihu\.com\/api\/v\d\/answers/\d+/recommendations - reject
 
 [Script]
-
 # ---(By srk24)---
 # > bilibili
-Bilibili_开屏去广告 = type=http-response,requires-body=1,max-size=0,pattern=^https?:\/\/app\.bilibili\.com\/x\/v2\/splash\/list,script-path=https://raw.githubusercontent.com/srk24/profile/master/js/bilibili_splash.js
+BiliBili_开屏去广告 = type=http-response,requires-body=1,max-size=0,pattern=^https?:\/\/app\.bilibili\.com\/x\/v2\/splash\/list,script-path=https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/bilibili/bilibili_plus.js
 
 [MITM]
 hostname = %APPEND% api.zhihu.com, www.zhihu.com, app.bilibili.com, api.bilibili.com
